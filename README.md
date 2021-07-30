@@ -109,12 +109,12 @@
 			spring-kubernetes-deployment-6ccfb4f579-r6p4t   1/1     Running   0          84s    ==> 10.240.0.4
 			spring-kubernetes-deployment-6ccfb4f579-tt47h   1/1     Running   0          36m    ==> 10.240.0.4
 			spring-kubernetes-deployment-6ccfb4f579-v22p5   1/1     Running   0          36m    ==> 10.240.0.4
-			
+<a></a>		
 		==> On remarque que on a toujorus trois podes ce qui prouve que le master nodes a démarré un nouveau pod vu que le champ replicas du déploiement n'est pas satisfait.
 			
 			On regarde a quel node appartiennent les podes:
 				
-			nas@Azure:~$ kubectl describe pods <br/>
+			nas@Azure:~$ kubectl describe pods
 <a></a>
 
 ![pods-1-1](https://user-images.githubusercontent.com/5339905/127658876-719adea8-7c94-4a14-a0a7-45869e754ca8.jpg)
