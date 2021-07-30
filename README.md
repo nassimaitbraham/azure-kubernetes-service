@@ -76,11 +76,17 @@
 		kubernetes          ClusterIP      10.0.0.1      <none>          443/TCP          12m
 		spring-kubernetes   LoadBalancer   10.0.218.87   52.152.137.84   8080:30353/TCP   3m24s
 		
-<h2>  9 - Affichage des service </h2>	
+<h2>  9 - Affichage des podes </h2>	
 	
 		nas@Azure:~$ kubectl describe pods
-		image node-1,image node-2,image node-3
+					
+		![Node-1](https://user-images.githubusercontent.com/5339905/127657114-8e2fbe1e-6c6e-4e31-87d7-047547ff1875.jpg)
 		
+		![node-2](https://user-images.githubusercontent.com/5339905/127657139-ebe2ce5f-2b77-489b-a311-f4c9a60dd8b2.jpg)
+		
+		![pods-3](https://user-images.githubusercontent.com/5339905/127657147-d20a89f7-9d35-42f4-9fb5-04dae9d474d9.jpg)
+
+
 <h2>  10 - Suppression du noeud : aks-default-11482510-1</h2>	
 		
 		- Suppression d'un nodes AKS pour simuler un worker nodeà l'état down
@@ -108,7 +114,12 @@
 			On regarde a quel node appartiennent les podes:
 				
 				nas@Azure:~$ kubectl describe pods
-				image node-1-1,image node-2-2,image node-3-3
+				
+				![pods-2-2](https://user-images.githubusercontent.com/5339905/127657261-b5432f82-71f7-469c-87ae-c745b625ab0d.jpg)
+				![pods-1-1](https://user-images.githubusercontent.com/5339905/127657230-3333e151-9f9e-48f3-81a9-db7a55dfb204.jpg)
+				![pods-3-3](https://user-images.githubusercontent.com/5339905/127657295-697d0392-13cd-4dd0-a591-3026aed5533f.jpg)
+
+
 			
 			On voit bien un nouveau pods "spring-kubernetes-deployment-6ccfb4f579-r6p4t" qui été de nouveau crée mais dans le node restant 
 
