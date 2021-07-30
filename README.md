@@ -47,9 +47,9 @@ nas@Azure:~$ ansible-playbook ansible_create_cluster.yaml<br/>
 nas@Azure:~$ kubectl get nodes<br/>
 Result : 2 noeuds<br/>
 				
-NAME                     STATUS   ROLES   AGE     VERSION<br/>
-aks-default-11482510-0   Ready    agent   3m56s   v1.19.9  ==> IP : 10.240.0.4<br/>
-aks-default-11482510-1   Ready    agent   3m46s   v1.19.9  ==> IP : 10.240.0.5<br/>
+NAME                     | STATUS   |ROLES  |AGE     |VERSION<br/>
+aks-default-11482510-0   | Ready    |agent  |3m56s   | v1.19.9  ==> IP : 10.240.0.4<br/>
+aks-default-11482510-1   | Ready    |agent  | 3m46s  |v1.19.9  ==> IP : 10.240.0.5<br/>
 			
 		
 <h2>  6 - Deploiement de pods </h2>
@@ -62,18 +62,18 @@ service/spring-kubernetes created<br/>
 
 nas@Azure:~$ kubectl get pods<br/>
 		
-NAME                                            READY   STATUS    RESTARTS   AGE<br/>
-spring-kubernetes-deployment-6ccfb4f579-tt47h   1/1     Running   0          112s     ==> 10.240.0.4<br/>
-spring-kubernetes-deployment-6ccfb4f579-v22p5   1/1     Running   0          112s     ==> 10.240.0.4<br/>
-spring-kubernetes-deployment-6ccfb4f579-x5lns   1/1     Running   0          112s     ==> 10.240.0.5<br/>
+NAME                                            |READY   |STATUS    |RESTARTS   |AGE<br/>
+spring-kubernetes-deployment-6ccfb4f579-tt47h   |1/1     |Running   |0          |112s     ==> 10.240.0.4<br/>
+spring-kubernetes-deployment-6ccfb4f579-v22p5   |1/1     |Running   |0          |112s     ==> 10.240.0.4<br/>
+spring-kubernetes-deployment-6ccfb4f579-x5lns   |1/1     |Running   |0          |112s     ==> 10.240.0.5<br/>
 		
 <h2>  8 - Affichage des service </h2>
 
 nas@Azure:~$ kubectl get service<br/>
 		
-NAME                TYPE           CLUSTER-IP    EXTERNAL-IP     PORT(S)          AGE<br/>
-kubernetes          ClusterIP      10.0.0.1      <none>          443/TCP          12m<br/>
-spring-kubernetes   LoadBalancer   10.0.218.87   52.152.137.84   8080:30353/TCP   3m24s<br/>
+NAME                |TYPE           |CLUSTER-IP    |EXTERNAL-IP     |PORT(S)          |AGE<br/>
+kubernetes          |ClusterIP      |10.0.0.1      |<none>          |443/TCP          |12m<br/>
+spring-kubernetes   |LoadBalancer   |10.0.218.87   |xx.xxxx.xxxx.xx |8080:30353/TCP   |3m24s<br/>
 		
 <h2>  9 - Affichage des podes </h2>	
 	
@@ -104,10 +104,10 @@ aks-default-11482510-0   Ready    agent   42m   v1.19.9 ==> IP : 10.240.0.4<br/>
 		
 nas@Azure:~$ kubectl get pods<br/>
 			
-NAME                                            READY   STATUS    RESTARTS   AGE<br/>
-spring-kubernetes-deployment-6ccfb4f579-r6p4t   1/1     Running   0          84s    ==> 10.240.0.4<br/>
-spring-kubernetes-deployment-6ccfb4f579-tt47h   1/1     Running   0          36m    ==> 10.240.0.4<br/>
-spring-kubernetes-deployment-6ccfb4f579-v22p5   1/1     Running   0          36m    ==> 10.240.0.4<br/>
+NAME                                            |READY   |STATUS    |RESTARTS   |AGE<br/>
+spring-kubernetes-deployment-6ccfb4f579-r6p4t   |1/1     |Running   |0          |84s    ==> 10.240.0.4<br/>
+spring-kubernetes-deployment-6ccfb4f579-tt47h   |1/1     |Running   |0          |36m    ==> 10.240.0.4<br/>
+spring-kubernetes-deployment-6ccfb4f579-v22p5   |1/1     |Running   |0          |36m    ==> 10.240.0.4<br/>
 	
 <a></a>		
 On remarque que on a toujorus trois podes ce qui prouve que le master nodes a démarré un nouveau pod vu que le champ replicas du déploiement n'est pas satisfait.<br/>
