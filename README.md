@@ -1,4 +1,4 @@
-<h1> Créatio d'un kluster Kubernetes et deploiement d'une application springboot dockerisée</h2>
+<h1> Création d'un kluster Kubernetes et deploiement d'une application springboot dockerisée</h2>
      
 	 Répertoire : Kubernetes -> Create-cluster-deploy-springboot-docker-images
 
