@@ -80,6 +80,7 @@
 	
 		nas@Azure:~$ kubectl describe pods
 
+		<a>![Node-1](https://user-images.githubusercontent.com/5339905/127657674-f5c9ac4e-ad15-44f9-89b5-516cb9a716e5.jpg)</a>
 <h2>  10 - Suppression du noeud : aks-default-11482510-1</h2>	
 		
 		- Suppression d'un nodes AKS pour simuler un worker nodeà l'état down
@@ -114,9 +115,9 @@
 			as@Azure:~$ az group delete --name kubernetes
 			as@Azure:~$ az group delete --name MC_kubernetes_myAKSCluster_eastus
 
-<h2></h2>
 
-![Node-1](https://user-images.githubusercontent.com/5339905/127657674-f5c9ac4e-ad15-44f9-89b5-516cb9a716e5.jpg)
+
+
 
 
 
