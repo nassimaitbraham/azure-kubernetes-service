@@ -113,7 +113,7 @@
 			
 			On regarde a quel node appartiennent les podes:
 				
-				nas@Azure:~$ kubectl describe pods
+				nas@Azure:~$ kubectl describe pods <br/>
 				
 				![pods-2-2](https://user-images.githubusercontent.com/5339905/127657261-b5432f82-71f7-469c-87ae-c745b625ab0d.jpg)
 				![pods-1-1](https://user-images.githubusercontent.com/5339905/127657230-3333e151-9f9e-48f3-81a9-db7a55dfb204.jpg)
