@@ -120,14 +120,11 @@ nas@Azure:~$ kubectl describe pods
 ![pods-2-2](https://user-images.githubusercontent.com/5339905/127658894-2d398527-7a23-4a27-99e0-0d4165373d6d.jpg)
 ![pods-3-3](https://user-images.githubusercontent.com/5339905/127658909-ee0dfb02-47c0-4377-babc-5889e01df5b5.jpg)
 
-
-
-					
-			On voit bien un nouveau pods "spring-kubernetes-deployment-6ccfb4f579-r6p4t" qui été de nouveau crée mais dans le node restant 
+On voit bien un nouveau pods "spring-kubernetes-deployment-6ccfb4f579-r6p4t" qui été de nouveau crée mais dans le node restant 
 
 <h2>  11 - Delete resource group </h2>
-			as@Azure:~$ az group delete --name kubernetes
-			as@Azure:~$ az group delete --name MC_kubernetes_myAKSCluster_eastus
+as@Azure:~$ az group delete --name kubernetes
+as@Azure:~$ az group delete --name MC_kubernetes_myAKSCluster_eastus
 
 
 
