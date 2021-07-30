@@ -83,6 +83,10 @@
 <a></a>
 ![Node-1](https://user-images.githubusercontent.com/5339905/127657674-f5c9ac4e-ad15-44f9-89b5-516cb9a716e5.jpg)
 
+![node-2](https://user-images.githubusercontent.com/5339905/127658605-50b0d069-c861-4f9c-8843-be8511fe060c.jpg)
+
+![pods-3](https://user-images.githubusercontent.com/5339905/127658661-60a67043-7dea-4a8d-80d3-394eb0f6974a.jpg)
+		
 		
 <h2>  10 - Suppression du noeud : aks-default-11482510-1</h2>	
 		
