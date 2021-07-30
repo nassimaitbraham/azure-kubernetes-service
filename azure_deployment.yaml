@@ -1,0 +1,39 @@
+kind: Deployment
+apiVersion: apps/v1
+metadata:
+  name: spring-kubernetes-deployment
+#Specification de deploiment
+spec:
+  # 1. Combien de copies de chaque pod qu on veut
+  replicas: 3
+  # 3. quels pods sont geres par ce deploiement
+  selector:
+    # il doit correspondre aux etiquettes que nous avons placees sur le pod
+    matchLabels:
+      deploy: spring-kubernetes
+  # 4. Ce champ de modele est une configuration de pod standard 
+  # imbrique dans la specification de deploiement
+  template:
+    metadata:
+      # 5. definition des etiquettes sur le pod
+      # Ceci est utilise dans le selecteur de deploiement - point 3
+      labels:
+        deploy: spring-kubernetes
+    # Spec du conteneur
+    spec:
+      containers:
+        - name: spring-kubernetes
+          image: 261219/hellospringazure:latest
+---
+kind: Service
+apiVersion: v1
+metadata:
+  name: spring-kubernetes
+spec:
+  selector:
+    deploy: spring-kubernetes
+  ports:
+  - protocol: TCP
+    port: 8080
+    targetPort: 8080
+  type: LoadBalancer

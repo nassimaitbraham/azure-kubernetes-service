@@ -1,0 +1,36 @@
+- name: Create Azure Kubernetes Service
+  hosts: localhost
+  connection: local
+  vars:
+    resource_group: kubernetes
+    location: eastus
+    aks_name: myAKSCluster
+    username: kubernetes
+    ssh_key: ssh-rsa XXXXXXXXXXXXXXXXXXXXXXXXXX generated-by-azure
+    client_id: XXXXXX-XXXXX-XXXXXXX-XXXXXXXX-XXXXXXXXX
+    client_secret: XXXX.XXXXX.XXXXX-XXXXX.XXXXX.XXXXXXX
+    aks_version: 1.19.9
+  tasks:
+  - name: Create resource group
+    azure_rm_resourcegroup:
+      name: "{{ resource_group }}"
+      location: "{{ location }}"
+  - name: Create a managed Azure Container Services (AKS) cluster
+    azure_rm_aks:
+      name: "{{ aks_name }}"
+      location: "{{ location }}"
+      resource_group: "{{ resource_group }}"
+      dns_prefix: "{{ aks_name }}"
+      kubernetes_version: "{{aks_version}}"
+      linux_profile:
+        admin_username: "{{ username }}"
+        ssh_key: "{{ ssh_key }}"
+      service_principal:
+        client_id: "{{ client_id }}"
+        client_secret: "{{ client_secret }}"
+      agent_pool_profiles:
+        - name: default
+          count: 2
+          vm_size: Standard_D2_v2
+      tags:
+        Environment: Production
