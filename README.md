@@ -3,11 +3,10 @@
 Répertoire : Kubernetes -> Create-cluster-deploy-springboot-docker-images <br/>
 
 
-nas@Azure:~$ az group create -l eastus -n sshKeyResourceGroup <br/>
-nas@Azure:~$ az group create -l eastus -n kubernetes <br/>
-
 <h2> 1 - Create sshKeyResourceGroup </h2>
 
+<p>nas@Azure:~$ az group create -l eastus -n sshKeyResourceGroup </p>
+nas@Azure:~$ az group create -l eastus -n kubernetes <br/>
 
 
 
