@@ -153,7 +153,7 @@ C- Activer l’intégration de Azure AD géré par AKS sur notre cluster</br>
     "managed": true,<br/>
     "serverAppId": null,<br/>
     "serverAppSecret": null,<br/>
-    "tenantId": "c0c01bfd-3cea-4181-805c-35f8f66368e7"<br/>
+    "tenantId": "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"<br/>
   },<br/>
   ...<br/>
   }<br/>
