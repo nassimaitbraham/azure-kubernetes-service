@@ -128,6 +128,18 @@ On voit bien un nouveau pods "spring-kubernetes-deployment-6ccfb4f579-r6p4t" qui
 <h2>  11 - Delete resource group </h2>
 as@Azure:~$ az group delete --name kubernetes<br/>
 as@Azure:~$ az group delete --name MC_kubernetes_myAKSCluster_eastus<br/>
+	
+<h2>  12 - Intégration d’Azure Active Directory géré par AKS </h2>
+a - Créer un group AD pour les administrateurs de cluster
+    nas@Azure:~$ az ad group create --display-name myAKSAdminGroup --mail-nickname myAKSAdminGroup
+	
+b- Vérifier que le groupe admin a été crée.
+    nas@Azure:~$ az ad group list --filter "displayname eq 'myAKSAdminGroup'" -o table
+    Return :
+	DisplayName      MailEnabled    MailNickname     ObjectId                              ObjectType    Odata.type                         SecurityEnabled
+	---------------  -------------  ---------------  ------------------------------------  ------------  ---------------------------------  -----------------
+	myAKSAdminGroup  False          myAKSAdminGroup  ba2cc1eb-8673-4887-a60e-d16ff8add4ae  Group         Microsoft.DirectoryServices.Group  True
+	
 
 
 
