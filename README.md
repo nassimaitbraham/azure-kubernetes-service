@@ -181,10 +181,10 @@ Return :</br>
   G - Affichage de la liste de nodes du cluster AKS<br/><br/>
   	<p></p>
   	nas@Azure:~$ kubectl get nodes
-	To sign in, use a web browser to open the page https://microsoft.com/devicelogin and enter the code CKEWSZRFU to authenticate.<br/><br/>
+	To sign in, use a web browser to open the page https://microsoft.com/devicelogin and enter the code CKEWSZRFU to authenticate.<br/>
 	<p></p>
-	NAME                     STATUS   ROLES   AGE   VERSION<br/>
-	aks-default-11482510-0   Ready    agent   36m   v1.19.9<br/>
+	NAME                     |STATUS   |ROLES   |AGE   |VERSION<br/>
+	aks-default-11482510-0   |Ready    |agent   |36m   |v1.19.9<br/>
 	<p></p>
 	==> On a bien à présent les autorisations sur les nodes du cluster AKS.<br/>
   
