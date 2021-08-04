@@ -182,7 +182,7 @@ Return :</br>
   	<p></p>
   	nas@Azure:~$ kubectl get nodes
 	To sign in, use a web browser to open the page https://microsoft.com/devicelogin and enter the code CKEWSZRFU to authenticate.<br/><br/>
-
+	<p></p>
 	NAME                     STATUS   ROLES   AGE   VERSION<br/>
 	aks-default-11482510-0   Ready    agent   36m   v1.19.9<br/>
 	
