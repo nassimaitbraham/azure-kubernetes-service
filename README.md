@@ -131,15 +131,17 @@ as@Azure:~$ az group delete --name MC_kubernetes_myAKSCluster_eastus<br/>
 	
 <h2>  12 - Intégration d’Azure Active Directory géré par AKS </h2>
 a - Créer un group AD pour les administrateurs de cluster</br>
-    nas@Azure:~$ az ad group create --display-name myAKSAdminGroup --mail-nickname myAKSAdminGroup</br>
+    nas@Azure:~$ az ad group create --display-name myAKSAdminGroup --mail-nickname myAKSAdminGroup</br></br>
 	
-b- Vérifier que le groupe admin a été crée.</br>
+b- Vérifier que le groupe admin a été crée.</br></br>
     nas@Azure:~$ az ad group list --filter "displayname eq 'myAKSAdminGroup'" -o table</br>
     Return :</br>
 	DisplayName      MailEnabled    MailNickname     ObjectId                              ObjectType    Odata.type                         SecurityEnabled</br>
 	---------------  -------------  ---------------  ------------------------------------  ------------  ---------------------------------  -----------------</br>
-	myAKSAdminGroup  False          myAKSAdminGroup  ba2cc1eb-8673-4887-a60e-d16ff8add4ae  Group         Microsoft.DirectoryServices.Group  True</br>
-	
+	myAKSAdminGroup  False          myAKSAdminGroup  ba2cc1eb-8673-4887-a60e-d16ff8add4ae  Group         Microsoft.DirectoryServices.Group  True</br></br>
+C- Activer l’intégration de Azure AD géré par AKS sur notre cluster</br>
+
+    nas@Azure:~$ az aks update -g kubernetes -n kubernetes --enable-aad --aad-admin-group-object-ids ba2cc1eb-8673-4887-a60e-d16ff8add4ae --aad-tenant-id xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx
 
 
 
