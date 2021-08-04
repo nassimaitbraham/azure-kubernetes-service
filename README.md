@@ -171,14 +171,15 @@ Return :</br>
      - Confirmer sur continuer<br/>
      	Affichge sur AZ CLI:<br/> 
 	<p></p>
-     	nas@Azure:~$ kubectl get nodes<br/>
+ 	nas@Azure:~$ kubectl get nodes<br/>
      	To sign in, use a web browser to open the page https://microsoft.com/devicelogin and enter the code DQDK7D26X to authenticate.<br/>
      	Error from server (Forbidden): nodes is forbidden: User "462c842d-3cc6-4d7b-a76b-b6ce41a6c81f" cannot list resource "nodes" in API group "" at the cluster scope.<br/>
      ==> Le compte que je viens d'utiliser n'a pas le groupe d'admin : myAKSAdminGroup<br/><br/>
   F - Ajout de mon compte au groupe : myAKSAdminGroup<br/><br/>
-  
+       <p></p>
   	nas@Azure:~$ az ad group member add --group myAKSAdminGroup --member-id xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxxx<br/><br/>
   G - Affichage de la liste de nodes du cluster AKS<br/><br/>
+  	<p></p>
   	nas@Azure:~$ kubectl get nodes
 	To sign in, use a web browser to open the page https://microsoft.com/devicelogin and enter the code CKEWSZRFU to authenticate.<br/><br/>
 
