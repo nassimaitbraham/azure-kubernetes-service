@@ -142,7 +142,7 @@ b- Vérifier que le groupe admin a été crée.</br></br>
 C- Activer l’intégration de Azure AD géré par AKS sur notre cluster</br>
 <p></p>
     nas@Azure:~$ az aks update -g kubernetes -n kubernetes --enable-aad --aad-admin-group-object-ids ba2cc1eb-8673-4887-a60e-d16ff8add4ae --aad-tenant-id xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx <br/><br/>
-    
+Return :</br>
  {<br/>
   "aadProfile": {<br/>
     "adminGroupObjectIDs": [<br/>
