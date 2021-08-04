@@ -157,8 +157,26 @@ Return :</br>
   },<br/>
   ...<br/>
   }<br/>
- D - Se connecter au cluster AKS<br/><br/>
- nas@Azure:~$ az aks get-credentials --resource-group myResourceGroup --name myManagedCluster
+ D - Se connecter au cluster AKS<br/><br/><br/>
+     nas@Azure:~$ az aks get-credentials --resource-group kubernetes --name myAKSCluster<br/>
+     A different object named clusterUser_kubernetes_myAKSCluster already exists in your kubeconfig file.<br/>
+     Overwrite? (y/n): y<br/>
+ E - Affichage de la liste des nodes
+     nas@Azure:~$ kubectl get nodes
+     To sign in, use a web browser to open the page https://microsoft.com/devicelogin and enter the code AZERTYUIO to authenticate.<br/>
+     - Aller sur le lien afficher<br/>
+     - Renseigner le code : AZERTYUIO<br/>
+     - Choisir un compte pour ce connecter<br/>
+     - Confirmer sur continuer<br/>
+     	Affichge sur AZ CLI:<br/> 
+     	nas@Azure:~$ kubectl get nodes<br/>
+     	To sign in, use a web browser to open the page https://microsoft.com/devicelogin and enter the code DQDK7D26X to authenticate.<br/>
+     	Error from server (Forbidden): nodes is forbidden: User "462c842d-3cc6-4d7b-a76b-b6ce41a6c81f" cannot list resource "nodes" in API group "" at the cluster scope.<br/>
+     ==> Le compte que je viens d'utiliser n'a pas le groupe d'admin : myAKSAdminGroup<br/>
+  F - Ajout de mon compte au groupe : myAKSAdminGroup<br/>
+     
+     
+     
 
 
 
