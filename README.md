@@ -157,6 +157,8 @@ Return :</br>
   },<br/>
   ...<br/>
   }<br/>
+ D - Se connecter au cluster AKS<br/><br/>
+ nas@Azure:~$ az aks get-credentials --resource-group myResourceGroup --name myManagedCluster
 
 
 
