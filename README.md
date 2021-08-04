@@ -185,7 +185,7 @@ Return :</br>
 	<p></p>
 	NAME                     STATUS   ROLES   AGE   VERSION<br/>
 	aks-default-11482510-0   Ready    agent   36m   v1.19.9<br/>
-	
+	<p></p>
 	==> On a bien à présent les autorisations sur les nodes du cluster AKS.<br/>
   
      
