@@ -6,7 +6,7 @@
     location: eastus
     aks_name: myAKSCluster
     username: kubernetes
-    ssh_key: ssh-rsa <you ssh key> generated-by-azure
+    ssh_key: ssh-rsa <your ssh key> generated-by-azure
     client_id: xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx
     client_secret: xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
     aks_version: 1.19.9
