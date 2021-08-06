@@ -203,11 +203,11 @@ nas@Azure:~$ az role assignment create --assignee $AKS_VIEWER_GROUP_ID --role "A
   
 d - Création d'un utilisateur<br/>
 
-nas@Azure:~$ AKS_VIEWER_USER_OBJECT_ID=$(az ad user create \<br/>
-  --display-name "aks viewer user1" \<br/>
-  --user-principal-name aksviweruser1@xxxxxxx.onmicrosoft.com \<br/>
-  --password password01! \<br/>
-  --query objectId -o tsv)<br/>
+nas@Azure:~$ AKS_VIEWER_USER_OBJECT_ID=$(az ad user create \ <br/>
+  --display-name "aks viewer user1" \ <br/>
+  --user-principal-name aksviweruser1@xxxxxxx.onmicrosoft.com \ <br/>
+  --password password01! \ <br/>
+  --query objectId -o tsv) <br/>
   
 e - Association de l'utilisateur  to viewer AKS Group<br/>
 
