@@ -188,7 +188,7 @@ Return :</br>
 	<p></p>
 	==> On a bien à présent les autorisations sur les nodes du cluster AKS.<br/>
 	
-<h2>  13 - Gestion des authorisations sur AKS avec K8S et Azure AD RBAC </h2>
+<h2>  13 - Gestion des autorisations sur AKS avec K8S et Azure AD RBAC </h2>
 
 a - On reccupere l'id du cluster kubernetes<br/>
 nas@Azure:~$ AKS_CLUSTER_ID=$(az aks show --resource-group kubernetes --name myAKSCluster --query id -o tsv) <br/>
@@ -241,7 +241,7 @@ i- Lister les nodes kubectl get nodes<br/>
 
 nas@Azure:~$ kubectl get nodes<br/>
 
-To sign in, use a web browser to open the page https://microsoft.com/devicelogin and enter the code DP2MDWN3Q to authenticate.<br/>
+To sign in, use a web browser to open the page https://microsoft.com/devicelogin and enter the code AZERTYUIO to authenticate.<br/>
 
 ==> Suivre les instruction d'authentification<br/>
 
