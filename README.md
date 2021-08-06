@@ -187,7 +187,80 @@ Return :</br>
 	aks-default-11482510-0   |Ready    |agent   |36m   |v1.19.9<br/>
 	<p></p>
 	==> On a bien à présent les autorisations sur les nodes du cluster AKS.<br/>
+	
+<h2>  13 - Gestion des authorisations sur AKS avec K8S et Azure AD RBAC </h2>
+
+a - On reccupere l'id du cluster kubernetes<br/>
+nas@Azure:~$ AKS_CLUSTER_ID=$(az aks show --resource-group kubernetes --name myAKSCluster --query id -o tsv)<br/>
+
+b - Créer un groupe Azure active directory<br/>
+
+nas@Azure:~$ AKS_VIEWER_GROUP_ID=$(az ad group create --display-name aksviewergroupe --mail-nickname aksviewergroupe --query objectId -o tsv)<br/>
+
+c - Création d'un role assignment qui permet à tout membre du groupe d’utiliser kubectl pour interagir avec un cluster AKS en lui octroyant le Rôle utilisateur de cluster du service Azure Kubernetes.<br/>
+
+nas@Azure:~$ az role assignment create --assignee $AKS_VIEWER_GROUP_ID --role "Azure Kubernetes Service Cluster User Role" --scope $AKS_CLUSTER_ID<br/>
   
+d - Création d'un utilisateur<br/>
+
+nas@Azure:~$ AKS_VIEWER_USER_OBJECT_ID=$(az ad user create \<br/>
+  --display-name "aks viewer user1" \<br/>
+  --user-principal-name aksviweruser1@xxxxxxx.onmicrosoft.com \<br/>
+  --password password01! \<br/>
+  --query objectId -o tsv)<br/>
+  
+e - Association de l'utilisateur  to viewer AKS Group<br/>
+
+nas@Azure:~$ az ad group member add --group aksviewergroupe --member-id $AKS_VIEWER_USER_OBJECT_ID<br/>
+
+f - création du role et du baindingrole<br/>
+
+nas@Azure:~$ kubectl apply -f ClusterRole-ViewerAccess.yaml<br/>
+		
+nas@Azure:~$ kubectl apply -f ClusterRoleBinding-ViewerAccess.yaml<br/>
+
+g - Vérifier que le clusterrole et le kubectl get clusterrolebinding sont bien creer dans AKS<br/>
+
+nas@Azure:~$ kubectl get clusterrole<br/>
+NAME                                                                   CREATED AT<br/>
+...<br/>
+aks-cluster-viewer-role                                                2021-08-06T14:45:44Z<br/>
+...<br/>
+
+nas@Azure:~$ kubectl get clusterrolebindin<br/>g
+NAME                                                   ROLE                                                               AGE<br/>
+...<br/>
+aks-cluster-viewer-rolebinding                         ClusterRole/aks-cluster-viewer-role                                28s<br/>
+...<br/>
+
+h - Se connecter au cluster<br/>
+
+az aks get-credentials --resource-group kubernetes --name myAKSCluster --overwrite-existing<br/>
+
+i- Lister les nodes kubectl get nodes<br/>
+
+nas@Azure:~$ kubectl get nodes<br/>
+
+To sign in, use a web browser to open the page https://microsoft.com/devicelogin and enter the code DP2MDWN3Q to authenticate.<br/>
+
+==> Suivre les instruction d'authentification<br/>
+
+- URL: https://microsoft.com/devicelogin<br/>
+- Code: XXXXXXXXX ==> Afficher sur le terminal.<br/>
+- Username: aksviweruser1@xxxxxxx.onmicrosoft.com<br/>
+- Password: password01!<br/>
+
+Return :<br/> 
+NAME                     STATUS   ROLES   AGE   VERSION<br/>
+aks-default-11482510-0   Ready    agent   63m   v1.19.9<br/>
+
+==> L'utilisateur à bien accès à la consultation des nodes<br/>
+
+j - création d'une ressource<br/>
+
+nas@Azure:~$ kubectl create namespace production<br/><br/>
+To sign in, use a web browser to open the page https://microsoft.com/devicelogin and enter the code AZERTYUIO to authenticate.<br/>
+Error from server (Forbidden): namespaces is forbidden: User "aksviweruser1@xxxxxxx.onmicrosoft.com" cannot create resource "namespaces" in API group "" at the cluster scope<br/>.
      
      
      
