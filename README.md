@@ -191,15 +191,15 @@ Return :</br>
 <h2>  13 - Gestion des authorisations sur AKS avec K8S et Azure AD RBAC </h2>
 
 a - On reccupere l'id du cluster kubernetes<br/>
-nas@Azure:~$ AKS_CLUSTER_ID=$(az aks show --resource-group kubernetes --name myAKSCluster --query id -o tsv)<br/>
+nas@Azure:~$ AKS_CLUSTER_ID=$(az aks show --resource-group kubernetes --name myAKSCluster --query id -o tsv) <br/>
 
-b - Créer un groupe Azure active directory<br/>
+b - Créer un groupe Azure active directory <br/>
 
-nas@Azure:~$ AKS_VIEWER_GROUP_ID=$(az ad group create --display-name aksviewergroupe --mail-nickname aksviewergroupe --query objectId -o tsv)<br/>
+nas@Azure:~$ AKS_VIEWER_GROUP_ID=$(az ad group create --display-name aksviewergroupe --mail-nickname aksviewergroupe --query objectId -o tsv) <br/>
 
-c - Création d'un role assignment qui permet à tout membre du groupe d’utiliser kubectl pour interagir avec un cluster AKS en lui octroyant le Rôle utilisateur de cluster du service Azure Kubernetes.<br/>
+c - Création d'un role assignment qui permet à tout membre du groupe d’utiliser kubectl pour interagir avec un cluster AKS en lui octroyant le Rôle utilisateur de cluster du service Azure Kubernetes. <br/>
 
-nas@Azure:~$ az role assignment create --assignee $AKS_VIEWER_GROUP_ID --role "Azure Kubernetes Service Cluster User Role" --scope $AKS_CLUSTER_ID<br/>
+nas@Azure:~$ az role assignment create --assignee $AKS_VIEWER_GROUP_ID --role "Azure Kubernetes Service Cluster User Role" --scope $AKS_CLUSTER_ID <br/>
   
 d - Création d'un utilisateur<br/>
 
