@@ -259,7 +259,7 @@ aks-default-11482510-0   Ready    agent   63m   v1.19.9<br/>
 j - création d'une ressource<br/>
 
 nas@Azure:~$ kubectl create namespace production<br/><br/>
-To sign in, use a web browser to open the page https://microsoft.com/devicelogin and enter the code AZERTYUIO to authenticate.<br/>
+To sign in, use a web browser to open the page <p>https://microsoft.com/devicelogin</p> and enter the code AZERTYUIO to authenticate.<br/>
 Error from server (Forbidden): namespaces is forbidden: User "aksviweruser1@xxxxxxx.onmicrosoft.com" cannot create resource "namespaces" in API group "" at the cluster scope<br/>.
      
      
