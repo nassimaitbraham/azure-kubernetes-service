@@ -262,7 +262,7 @@ To sign in, use a web browser to open the page https://microsoft.com/devicelogin
 Error from server (Forbidden): namespaces is forbidden: User "aksviweruser1@xxxxxxx.onmicrosoft.com" cannot create resource "namespaces" in API group "" at the cluster scope<br/>.
      
 <h2>  14 - Delete du resource group </h2>
-
+<p></p>
 as@Azure:~$ az group delete --name kubernetes<br/>
 as@Azure:~$ az group delete --name MC_kubernetes_myAKSCluster_eastus<br/>
      
