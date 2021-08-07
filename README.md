@@ -10,7 +10,7 @@ nas@Azure:~$ az group create -l eastus -n kubernetes <br/>
 
 
 
-<h2> 2 - Create ssk key </h2>
+<h2> 2 - Create ssh key </h2>
 
 nas@Azure:~$ az sshkey create --location "eastus" --resource-group "sshKeyResourceGroup" --name "mySSHKeyForAKS"<br/>
 	 
@@ -24,7 +24,7 @@ Return : <br/>
 	"tags": null,<br/>
 	"type": null<br/>
 }<br/>
-<h2> 3 - Creation d'une app register (Azure Portail) </h2>
+<h2> 3 - Céeation d'une app register (Azure Portail) </h2>
 
 a - Azure active directory -> App registrations -> New registrations<br/>
 Name : Kubernetes
@@ -37,7 +37,7 @@ D - Certificates & secrets -> New client secret<br/>
 Description : kubernetesSecretClient<br/>
 Value : XXXX.XXXXX.XXX-X.XXXXXXXX.XXXXXXXX<br/>
 	 
-<h2> 4 - Lancer le script : </h2>
+<h2> 4 - Lancer le script </h2>
  
 nas@Azure:~$ ansible-playbook ansible_create_cluster.yaml<br/>
 
@@ -46,7 +46,7 @@ nas@Azure:~$ ansible-playbook ansible_create_cluster.yaml<br/>
 nas@Azure:~$ az aks get-credentials -g kubernetes -n myAKSCluster<br/>
 		
 
-<h2> 6 - Reccupéré la liste des nodes </h2>
+<h2> 6 - récupérer la liste des nodes </h2>
  
 nas@Azure:~$ kubectl get nodes<br/>
 Result : 2 noeuds<br/>
@@ -56,7 +56,7 @@ aks-default-11482510-0   | Ready    |agent  |3m56s   | v1.19.9  ==> IP : 10.240.
 aks-default-11482510-1   | Ready    |agent  | 3m46s  |v1.19.9  ==> IP : 10.240.0.5<br/>
 			
 		
-<h2>  7 - Deploiement de pods </h2>
+<h2>  7 - deploiement de pods </h2>
     
 nas@Azure:~$ kubectl apply -f azure_deployment.yaml<br/>
 deployment.apps/spring-kubernetes-deployment created<br/>
@@ -71,7 +71,7 @@ spring-kubernetes-deployment-6ccfb4f579-tt47h   |1/1     |Running   |0          
 spring-kubernetes-deployment-6ccfb4f579-v22p5   |1/1     |Running   |0          |112s     ==> 10.240.0.4<br/>
 spring-kubernetes-deployment-6ccfb4f579-x5lns   |1/1     |Running   |0          |112s     ==> 10.240.0.5<br/>
 		
-<h2>  9 - Affichage des service </h2>
+<h2>  9 - Affichage des services </h2>
 
 nas@Azure:~$ kubectl get service<br/>
 		
@@ -93,18 +93,16 @@ nas@Azure:~$ kubectl describe pods<br/>
 		
 <h2>  11 - Suppression du noeud : aks-default-11482510-1</h2>	
 	
-- Suppression d'un nodes AKS pour simuler un worker nodeà l'état down<br/>
+- Suppression d'un node AKS pour simuler un worker node à l'état down<br/>
 		
 nas@Azure:~$ kubectl delete nodes aks-default-11482510-1   ==> IP : 10.240.0.5 <br/>
 			
-- On a qu'un seul nodes qui reste<br/>
-
 nas@Azure:~$ kubectl get nodes (Il ne reste plus qu'un worker nodes dans le cluster)<br/>
 			
 NAME                     STATUS   ROLES   AGE   VERSION<br/>
 aks-default-11482510-0   Ready    agent   42m   v1.19.9 ==> IP : 10.240.0.4<br/>
 			
-- Après un court instant on regarde combien de pods on a dans notre cluster :<br/>
+- Après un court instant, on regarde combien de pods on a dans notre cluster :<br/>
 		
 nas@Azure:~$ kubectl get pods<br/>
 			
@@ -114,8 +112,8 @@ spring-kubernetes-deployment-6ccfb4f579-tt47h   |1/1     |Running   |0          
 spring-kubernetes-deployment-6ccfb4f579-v22p5   |1/1     |Running   |0          |36m    ==> 10.240.0.4<br/>
 	
 <a></a>		
-On remarque que on a toujorus trois podes ce qui prouve que le master nodes a démarré un nouveau pod vu que le champ replicas du déploiement n'est pas satisfait.<br/>
-On regarde a quel node appartiennent les podes:<br/>
+On remarque qu'on a toujours trois pods, ce qui prouve que le master node a démarré un nouveau pod vu que le champ replicas du déploiement n'est pas satisfait.<br/>
+On regarde à quels nodes appartiennent les podes:<br/>
 				
 nas@Azure:~$ kubectl describe pods<br/>
 <a></a>
@@ -124,13 +122,11 @@ nas@Azure:~$ kubectl describe pods<br/>
 ![pods-2-2](https://user-images.githubusercontent.com/5339905/127658894-2d398527-7a23-4a27-99e0-0d4165373d6d.jpg)<br/>
 ![pods-3-3](https://user-images.githubusercontent.com/5339905/127658909-ee0dfb02-47c0-4377-babc-5889e01df5b5.jpg)<br/>
 
-On voit bien un nouveau pods "spring-kubernetes-deployment-6ccfb4f579-r6p4t" qui été de nouveau crée mais dans le node restant<br/> 
+On voit bien un nouveau pods "spring-kubernetes-deployment-6ccfb4f579-r6p4t" qui été de nouveau créé mais dans le node restant<br/> 
 
-<h2>  12 - Delete resource group </h2>
-as@Azure:~$ az group delete --name kubernetes<br/>
-as@Azure:~$ az group delete --name MC_kubernetes_myAKSCluster_eastus<br/>
-	
-<h2>  13 - Intégration d’Azure Active Directory géré par AKS </h2>
+
+<h2>  12 - Intégration d’Azure Active Directory géré par AKS </h2>
+
 a - Créer un group AD pour les administrateurs de cluster</br>
     nas@Azure:~$ az ad group create --display-name myAKSAdminGroup --mail-nickname myAKSAdminGroup</br></br>
 	
@@ -189,7 +185,7 @@ Return :</br>
 	<p></p>
 	==> On a bien à présent les autorisations sur les nodes du cluster AKS.<br/>
 	
-<h2>  14 - Gestion des autorisations sur AKS avec K8S et Azure AD RBAC </h2>
+<h2>  13 - Gestion des autorisations sur AKS avec K8S et Azure AD RBAC </h2>
 
 a - On reccupere l'id du cluster kubernetes<br/>
 nas@Azure:~$ AKS_CLUSTER_ID=$(az aks show --resource-group kubernetes --name myAKSCluster --query id -o tsv) <br/>
@@ -263,7 +259,10 @@ nas@Azure:~$ kubectl create namespace production<br/><br/>
 To sign in, use a web browser to open the page https://microsoft.com/devicelogin and enter the code AZERTYUIO to authenticate.<br/>
 Error from server (Forbidden): namespaces is forbidden: User "aksviweruser1@xxxxxxx.onmicrosoft.com" cannot create resource "namespaces" in API group "" at the cluster scope<br/>.
      
-     
+<h2>  14 - Delete du resource group </h2>
+
+as@Azure:~$ az group delete --name kubernetes<br/>
+as@Azure:~$ az group delete --name MC_kubernetes_myAKSCluster_eastus<br/>
      
 
 
