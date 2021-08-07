@@ -1,6 +1,6 @@
 <h1> Création d'un kluster Kubernetes et deploiement d'une application springboot dockerisée</h2>
 
-Répertoire : azure-kubernetes-service -> Kubernetes-Cluster-SpringBootApp-docker <br/>
+Répertoire : azure-kubernetes-service -> Kubernetes-Cluster<br/>
 
 
 <h2> 1 - Create sshKeyResourceGroup </h2>
