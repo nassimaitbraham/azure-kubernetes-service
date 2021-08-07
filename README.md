@@ -37,15 +37,16 @@ D - Certificates & secrets -> New client secret<br/>
 Description : kubernetesSecretClient<br/>
 Value : XXXX.XXXXX.XXX-X.XXXXXXXX.XXXXXXXX<br/>
 	 
-<h2> 4 - Connexion au cluster Kubernetes avec kubectl </h2>
+<h2> 4 - Lancer le script : </h2>
+ 
+nas@Azure:~$ ansible-playbook ansible_create_cluster.yaml<br/>
+
+<h2> 5 - Connexion au cluster Kubernetes avec kubectl </h2>
 
 nas@Azure:~$ az aks get-credentials -g kubernetes -n myAKSCluster<br/>
 		
-<h2> 5 - Lancer le script : </h2>
- 
-nas@Azure:~$ ansible-playbook ansible_create_cluster.yaml<br/>
-	 
-<h2> 5 - Reccupéré la liste des nodes </h2>
+
+<h2> 6 - Reccupéré la liste des nodes </h2>
  
 nas@Azure:~$ kubectl get nodes<br/>
 Result : 2 noeuds<br/>
@@ -55,13 +56,13 @@ aks-default-11482510-0   | Ready    |agent  |3m56s   | v1.19.9  ==> IP : 10.240.
 aks-default-11482510-1   | Ready    |agent  | 3m46s  |v1.19.9  ==> IP : 10.240.0.5<br/>
 			
 		
-<h2>  6 - Deploiement de pods </h2>
+<h2>  7 - Deploiement de pods </h2>
     
 nas@Azure:~$ kubectl apply -f azure_deployment.yaml<br/>
 deployment.apps/spring-kubernetes-deployment created<br/>
 service/spring-kubernetes created<br/>
 		
-<h2>  7 - Affichage des pods </h2>
+<h2>  8 - Affichage des pods </h2>
 
 nas@Azure:~$ kubectl get pods<br/>
 		
@@ -70,7 +71,7 @@ spring-kubernetes-deployment-6ccfb4f579-tt47h   |1/1     |Running   |0          
 spring-kubernetes-deployment-6ccfb4f579-v22p5   |1/1     |Running   |0          |112s     ==> 10.240.0.4<br/>
 spring-kubernetes-deployment-6ccfb4f579-x5lns   |1/1     |Running   |0          |112s     ==> 10.240.0.5<br/>
 		
-<h2>  8 - Affichage des service </h2>
+<h2>  9 - Affichage des service </h2>
 
 nas@Azure:~$ kubectl get service<br/>
 		
@@ -78,7 +79,7 @@ NAME                |TYPE           |CLUSTER-IP    |EXTERNAL-IP     |PORT(S)    
 kubernetes          |ClusterIP      |10.0.0.1      |<none>          |443/TCP          |12m<br/>
 spring-kubernetes   |LoadBalancer   |10.0.218.87   |xx.xxxx.xxxx.xx |8080:30353/TCP   |3m24s<br/>
 		
-<h2>  9 - Affichage des podes </h2>	
+<h2>  10 - Affichage des podes </h2>	
 	
 nas@Azure:~$ kubectl describe pods<br/>
 		
@@ -90,7 +91,7 @@ nas@Azure:~$ kubectl describe pods<br/>
 ![pods-3](https://user-images.githubusercontent.com/5339905/127658661-60a67043-7dea-4a8d-80d3-394eb0f6974a.jpg)<br/>
 		
 		
-<h2>  10 - Suppression du noeud : aks-default-11482510-1</h2>	
+<h2>  11 - Suppression du noeud : aks-default-11482510-1</h2>	
 	
 - Suppression d'un nodes AKS pour simuler un worker nodeà l'état down<br/>
 		
@@ -125,11 +126,11 @@ nas@Azure:~$ kubectl describe pods<br/>
 
 On voit bien un nouveau pods "spring-kubernetes-deployment-6ccfb4f579-r6p4t" qui été de nouveau crée mais dans le node restant<br/> 
 
-<h2>  11 - Delete resource group </h2>
+<h2>  12 - Delete resource group </h2>
 as@Azure:~$ az group delete --name kubernetes<br/>
 as@Azure:~$ az group delete --name MC_kubernetes_myAKSCluster_eastus<br/>
 	
-<h2>  12 - Intégration d’Azure Active Directory géré par AKS </h2>
+<h2>  13 - Intégration d’Azure Active Directory géré par AKS </h2>
 a - Créer un group AD pour les administrateurs de cluster</br>
     nas@Azure:~$ az ad group create --display-name myAKSAdminGroup --mail-nickname myAKSAdminGroup</br></br>
 	
@@ -188,7 +189,7 @@ Return :</br>
 	<p></p>
 	==> On a bien à présent les autorisations sur les nodes du cluster AKS.<br/>
 	
-<h2>  13 - Gestion des autorisations sur AKS avec K8S et Azure AD RBAC </h2>
+<h2>  14 - Gestion des autorisations sur AKS avec K8S et Azure AD RBAC </h2>
 
 a - On reccupere l'id du cluster kubernetes<br/>
 nas@Azure:~$ AKS_CLUSTER_ID=$(az aks show --resource-group kubernetes --name myAKSCluster --query id -o tsv) <br/>
